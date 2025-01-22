@@ -362,6 +362,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                          </div>
                          <div class="review-text"><?= $item['review_description']; ?></div>
+                         <button class="extend-button">Show more</button>
+                         <button class="reduce-button --hidden">Show less</button>
                      </div>
                  <?php endforeach; ?>
              </div>
@@ -452,6 +454,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                         </svg>
                     </div>
                     <div class="review-text">{{{ item.review_description }}}</div>
+                    <button class="extend-button">Show more</button>
+                    <button class="reduce-button --hidden">Show less</button>
                 </div>
 
                 <# } ); #>

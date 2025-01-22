@@ -9,10 +9,14 @@
 
   @include tablet {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     align-content: center;
     min-width: 0;
     padding: 30px 10px;
+  }
+
+  .--hidden{
+    display: none;
   }
 
   .google-text--container {
@@ -149,7 +153,6 @@
       background-color: #f4f4f4;
       padding: 20px;
       border-radius: 4px;
-      height: 250px;
 
       .user-container {
         display: flex;

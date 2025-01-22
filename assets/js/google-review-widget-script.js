@@ -1,13 +1,16 @@
 jQuery( window ).on( 'elementor/frontend/init', () => {
 
-    jQuery('.review-cards').slick({
+    const slider =  jQuery('.review-cards')
+
+    slider.slick({
         infinite: true,
         draggable:false,
-        autoplay: true,
+        autoplay: false,
         dots: true,
         arrows: false,
         autoplaySpeed: 2000,
         slidesToShow: 1,
+        adaptiveHeight: true,
         prevArrow: `<button class="slick-arrow --prev"></button>`,
         nextArrow: `<button class="slick-arrow --next"></button>`,
         mobileFirst: true,
@@ -54,4 +57,41 @@ jQuery( window ).on( 'elementor/frontend/init', () => {
         box.style.backgroundColor = getRandomColor();
     });
 
+
+    //extend( change height) to slide to show all text
+    const extendButtons = jQuery('.extend-button');
+    const reduceButtons = jQuery('.reduce-button')
+
+
+
+    extendButtons.on('click', function(){
+
+        const parentCard = jQuery(this).closest('.review-card')
+        const reviewTextElement = parentCard.find('.review-text')
+        const textElementHeight = reviewTextElement[0].scrollHeight + 10
+
+        //set height for content
+        reviewTextElement.css('height', `${textElementHeight}px`);
+        // to hide extend button
+        jQuery(this).addClass('--hidden')
+
+        //to show reduce button
+        parentCard.find('.reduce-button').removeClass('--hidden')
+    })
+
+    reduceButtons.on('click', function(){
+
+        const parentCard = jQuery(this).closest('.review-card')
+        const reviewTextElement = parentCard.find('.review-text')
+
+        //set height for content
+        reviewTextElement.css('height', '130px');
+
+        // to hide reduce button
+        jQuery(this).addClass('--hidden')
+
+        //to show extend button
+        parentCard.find('.extend-button').removeClass('--hidden')
+    })
+    
 } );
