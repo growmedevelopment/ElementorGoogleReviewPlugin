@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# PHPStorm / IntelliJ IDEA
+.idea/
+
+# Compiled files
+*.min.js
+*.map
+
+# Node and library files (if applicable)
+node_modules/
