@@ -4,6 +4,10 @@
   }
 }
 
+@mixin transition($properties: all, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
+  transition: $properties $duration $timing-function $delay;
+}
+
 .review-widget {
   overflow: hidden;
 
@@ -107,6 +111,7 @@
     .slick-list {
       @include tablet {
         margin: 0 20px;
+        padding: 12px 0;
       }
     }
 
@@ -165,6 +170,14 @@
       background-color: #f4f4f4;
       padding: 20px;
       border-radius: 4px;
+      @include transition();
+
+      @include tablet {
+        &:hover {
+          transform: translateY(-10px);
+        }
+      }
+
 
       .user-container {
         display: flex;
