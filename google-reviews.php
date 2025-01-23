@@ -3,13 +3,14 @@
 /**
  * Plugin Name: Google review Widgets
  * Description: Elementor custom widgets for instead of using Google review.
- * Version:     1.0.0
+ * Version:     1.0.3
  * Author:      Dmytro Kovalenko
  * Author URI:  https://www.dmytrokovalenko.online/
  * Text Domain: google-review
  *
- * Elementor tested up to: 3.5.0
- * Elementor Pro tested up to: 3.5.0
+ * Elementor tested up to: 3.26.4
+ * Elementor Pro tested up to: 3.26.3
+ * Requires PHP: 7.1
  */
 
 use Elementor\Widgets_Manager;

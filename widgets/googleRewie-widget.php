@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
+
 class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
     public function __construct($data = [], $args = null) {
@@ -152,6 +153,24 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                 'label' => esc_html__( 'Title', 'textdomain' ),
                 'placeholder' => esc_html__( 'Enter your title', 'textdomain' ),
                 'default'=>'Good'
+            ]
+        );
+        $this->add_control(
+            'extend_button_text',
+            [
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__( 'Title for extend button', 'textdomain' ),
+                'placeholder' => esc_html__( 'Enter your title', 'textdomain' ),
+                'default'=>'Read more'
+            ]
+        );
+        $this->add_control(
+            'reduce_button_text',
+            [
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__( 'Title for reduce button', 'textdomain' ),
+                'placeholder' => esc_html__( 'Enter your title', 'textdomain' ),
+                'default'=>'Hide'
             ]
         );
 
@@ -362,8 +381,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                          </div>
                          <div class="review-text"><?= $item['review_description']; ?></div>
-                         <button class="extend-button">Show more</button>
-                         <button class="reduce-button --hidden">Show less</button>
+                         <button class="extend-button btn"><span><?=$settings['extend_button_text']?></span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 10l5 5l5-5"/></svg></button>
+                         <button class="reduce-button btn --hidden"><span><?=$settings['reduce_button_text']?></span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 14l-5-5l-5 5"/></svg></button>
                      </div>
                  <?php endforeach; ?>
              </div>
@@ -454,8 +473,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                         </svg>
                     </div>
                     <div class="review-text">{{{ item.review_description }}}</div>
-                    <button class="extend-button">Show more</button>
-                    <button class="reduce-button --hidden">Show less</button>
+                    <button class="extend-button btn"><span>{{{ settings.extend_button_text }}}</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 10l5 5l5-5"/></svg></button>
+                    <button class="reduce-button btn --hidden"><span>{{{ settings.reduce_button_text }}}</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 14l-5-5l-5 5"/></svg></button>
                 </div>
 
                 <# } ); #>

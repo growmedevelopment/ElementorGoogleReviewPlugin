@@ -1,11 +1,11 @@
-jQuery( window ).on( 'elementor/frontend/init', () => {
+jQuery(window).on('elementor/frontend/init', () => {
 
-    const slider =  jQuery('.review-cards')
+    const slider = jQuery('.review-cards')
 
     slider.slick({
         infinite: true,
-        draggable:false,
-        autoplay: false,
+        draggable: false,
+        autoplay: true,
         dots: true,
         arrows: false,
         autoplaySpeed: 2000,
@@ -63,8 +63,7 @@ jQuery( window ).on( 'elementor/frontend/init', () => {
     const reduceButtons = jQuery('.reduce-button')
 
 
-
-    extendButtons.on('click', function(){
+    extendButtons.on('click', function () {
 
         const parentCard = jQuery(this).closest('.review-card')
         const reviewTextElement = parentCard.find('.review-text')
@@ -79,7 +78,7 @@ jQuery( window ).on( 'elementor/frontend/init', () => {
         parentCard.find('.reduce-button').removeClass('--hidden')
     })
 
-    reduceButtons.on('click', function(){
+    reduceButtons.on('click', function () {
 
         const parentCard = jQuery(this).closest('.review-card')
         const reviewTextElement = parentCard.find('.review-text')
@@ -93,5 +92,5 @@ jQuery( window ).on( 'elementor/frontend/init', () => {
         //to show extend button
         parentCard.find('.extend-button').removeClass('--hidden')
     })
-    
-} );
+
+});
