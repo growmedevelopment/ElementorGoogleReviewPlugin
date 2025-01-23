@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Google review Widgets
  * Description: Elementor widget Google testimony.
- * Version:     1.0.4
+ * Version:     1.0.8
  * Author:      Dmytro Kovalenko
  * Author URI:  https://www.dmytrokovalenko.online/
  * Text Domain: google-review
@@ -14,10 +14,18 @@
  */
 
 use Elementor\Widgets_Manager;
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
+
+require_once( __DIR__ . '/plugin-update-checker-master/plugin-update-checker.php' );
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    'http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews-plugin.json',
+    __DIR__. '/google-reviews.php' ,
+    'google-reviews'
+);
 
 /**
  * Register Widgets.
@@ -37,3 +45,5 @@ function register_essential_custom_widgets( Widgets_Manager $widgets_manager ): 
 
 }
 add_action( 'elementor/widgets/register', 'register_essential_custom_widgets' );
+
+
