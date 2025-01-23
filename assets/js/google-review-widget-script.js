@@ -58,39 +58,32 @@ jQuery(window).on('elementor/frontend/init', () => {
     });
 
 
-    //extend( change height) to slide to show all text
-    const extendButtons = jQuery('.extend-button');
-    const reduceButtons = jQuery('.reduce-button')
+    //helper function to extend( change height) slide to show all text
+    const toggleReviewHeight = (button, expand) => {
+        const DEFAULT_HEIGHT = '130px';
+        const ANIMATION_DURATION = 300; // Duration in milliseconds
 
+        const parentCard = jQuery(button).closest('.review-card');
+        const reviewTextElement = parentCard.find('.review-text');
 
-    extendButtons.on('click', function () {
+        // Adjust height based on action
+        const newHeight = expand ? `${reviewTextElement[0].scrollHeight + 10}px` : DEFAULT_HEIGHT;
+        reviewTextElement.animate({ height: newHeight }, ANIMATION_DURATION);
 
-        const parentCard = jQuery(this).closest('.review-card')
-        const reviewTextElement = parentCard.find('.review-text')
-        const textElementHeight = reviewTextElement[0].scrollHeight + 10
+        // Toggle buttons visibility
+        parentCard.find('.extend-button').toggleClass('--hidden', expand);
+        parentCard.find('.reduce-button').toggleClass('--hidden', !expand);
+    };
 
-        //set height for content
-        reviewTextElement.css('height', `${textElementHeight}px`);
-        // to hide extend button
-        jQuery(this).addClass('--hidden')
+    // Handle extend button click
+    jQuery('.extend-button').on('click', function () {
+        toggleReviewHeight(this, true);
+    });
 
-        //to show reduce button
-        parentCard.find('.reduce-button').removeClass('--hidden')
-    })
+    // Handle reduce button click
+    jQuery('.reduce-button').on('click', function () {
+        toggleReviewHeight(this, false);
+    });
 
-    reduceButtons.on('click', function () {
-
-        const parentCard = jQuery(this).closest('.review-card')
-        const reviewTextElement = parentCard.find('.review-text')
-
-        //set height for content
-        reviewTextElement.css('height', '130px');
-
-        // to hide reduce button
-        jQuery(this).addClass('--hidden')
-
-        //to show extend button
-        parentCard.find('.extend-button').removeClass('--hidden')
-    })
 
 });
