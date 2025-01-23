@@ -246,6 +246,17 @@
         -webkit-line-clamp: 6;
         -webkit-box-orient: vertical;
       }
+
+      .btn{
+        padding: 0;
+        background-color: transparent;
+        font-size: 14px;
+        opacity: 0.4;
+        &:hover{
+          opacity: 1;
+          text-decoration: underline;
+        }
+      }
     }
 
     .slick-arrow {

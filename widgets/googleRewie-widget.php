@@ -141,7 +141,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => 'Text section',
+                'label' => esc_html__( 'Text section', 'google-review' ),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -150,27 +150,27 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
             'title',
             [
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'label' => esc_html__( 'Title', 'textdomain' ),
-                'placeholder' => esc_html__( 'Enter your title', 'textdomain' ),
-                'default'=>'Good'
+                'label' => esc_html__( 'Title', 'google-review' ),
+                'placeholder' => esc_html__( 'Enter your title', 'google-review' ),
+                'default'=> esc_html__( 'Good', 'google-review' ),
             ]
         );
         $this->add_control(
             'extend_button_text',
             [
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'label' => esc_html__( 'Title for extend button', 'textdomain' ),
-                'placeholder' => esc_html__( 'Enter your title', 'textdomain' ),
-                'default'=>'Read more'
+                'label' => esc_html__( 'Title for extend button', 'google-review' ),
+                'placeholder' => esc_html__( 'Enter your title', 'google-review' ),
+                'default'=> esc_html__( 'Read more', 'google-review' ),
             ]
         );
         $this->add_control(
             'reduce_button_text',
             [
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'label' => esc_html__( 'Title for reduce button', 'textdomain' ),
-                'placeholder' => esc_html__( 'Enter your title', 'textdomain' ),
-                'default'=>'Hide'
+                'label' => esc_html__( 'Title for reduce button', 'google-review' ),
+                'placeholder' => esc_html__( 'Enter your title', 'google-review' ),
+                'default'=> esc_html__( 'Hide', 'google-review' ),
             ]
         );
 
@@ -178,7 +178,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
             'stars',
             [
                 'type' => \Elementor\Controls_Manager::NUMBER,
-                'label' => 'Stars',
+                'label' => esc_html__( 'Stars', 'google-review' ),
                 'min' => 3,
                 'max' => 5,
                 'step' => 0.5,
@@ -190,9 +190,9 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
             'text',
             [
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'label' => 'Text under stars',
-                'placeholder' => 'Based on __ reviews',
-                'default'=>'Based on __ reviews'
+                'label' => esc_html__( 'Text under stars', 'google-review' ),
+                'placeholder' => esc_html__( 'Based on __ reviews', 'google-review' ),
+                'default'=>esc_html__( 'Based on __ reviews', 'google-review' ),
             ]
         );
 
@@ -203,7 +203,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_content',
             [
-                'label' => 'Reviews',
+                'label' => esc_html__( 'Reviews', 'google-review' ),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -211,36 +211,36 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'list',
             [
-                'label' => 'Reviews',
+                'label' => esc_html__( 'Reviews', 'google-review' ),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => [
                     [
                         'name' => 'text',
-                        'label' => 'Author Full name',
+                        'label' => esc_html__( 'Author Full name', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::TEXT,
-                        'placeholder' => 'Jon Smith',
-                        'default' => 'Jon Smith',
+                        'placeholder' => esc_html__( 'Jon Smith', 'google-review' ),
+                        'default' => esc_html__( 'Jon Smith', 'google-review' ),
                         'label_block' => true,
                     ],
                     [
                         'name' => 'avatar_url',
-                        'label' => 'link to avatar',
+                        'label' => esc_html__( 'link to avatar', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::TEXT,
-                        'placeholder' => '',
-                        'default' => '',
+                        'placeholder' => esc_html__( '', 'google-review' ),
+                        'default' => esc_html__( '', 'google-review' ),
                         'label_block' => true,
                     ],
                     [
                         'name' => 'link',
-                        'label' => 'Author Initial',
+                        'label' => esc_html__( 'Author Initial', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::TEXT,
-                        'placeholder' => 'J',
-                        'default' => 'J',
+                        'placeholder' => esc_html__( 'J', 'google-review' ),
+                        'default' => esc_html__( 'J', 'google-review' ),
                         'label_block' => true,
                     ],
                     [
                         'name' => 'date',
-                        'label' => 'Date of published',
+                        'label' => esc_html__( 'Date of published', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::TEXT,
                         'placeholder' => '2024-03-05',
                         'default' => '2024-03-05',
@@ -249,7 +249,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                     ],
                     [
                         'name' => 'stars',
-                        'label' => 'Stars',
+                        'label' => esc_html__( 'Stars', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::NUMBER,
                         'min' => 3,
                         'max' => 5,
@@ -258,10 +258,10 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                     ],
                     [
                         'name' => 'review_description',
-                        'label' => 'Review',
+                        'label' => esc_html__( 'Review', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::WYSIWYG,
-                        'default' => 'We chose _____ for our extensive kitchen renovation and floor refinishing project. James and team did an incredible job and we are thrilled with the result! During the planning stage, it was evident that James really listened to what we wanted from the project and what our priorities were. We lived in another area of the home while the reno was ongoing and we saw the level of detail and care that they took. The site was clean too. The work schedule and timeline were adhered to, good communication, and transparency with the budget. We highly recommend ____!',
-                        'placeholder' => 'Type your review here'
+                        'default' => esc_html__( "'We chose _____ for our extensive kitchen renovation and floor refinishing project. James and team did an incredible job and we are thrilled with the result! During the planning stage, it was evident that James really listened to what we wanted from the project and what our priorities were. We lived in another area of the home while the reno was ongoing and we saw the level of detail and care that they took. The site was clean too. The work schedule and timeline were adhered to, good communication, and transparency with the budget. We highly recommend ____!'", 'google-review' ),
+                        'placeholder' => esc_html__( 'Type your review here', 'google-review' ),
                     ],
                 ],
                 'title_field' => '{{{ text }}}',
@@ -274,7 +274,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'items_color',
             [
-                'label' => esc_html__( 'Color of review items', 'textdomain' ),
+                'label' => esc_html__( 'Color of review items', 'google-review' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .review-card' => 'background-color: {{VALUE}}',
@@ -285,7 +285,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'background_color',
             [
-                'label' => esc_html__( 'Background color', 'textdomain' ),
+                'label' => esc_html__( 'Background color', 'google-review' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .review-widget' => 'background-color: {{VALUE}}',
@@ -381,8 +381,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                          </div>
                          <div class="review-text"><?= $item['review_description']; ?></div>
-                         <button class="extend-button btn"><span><?=$settings['extend_button_text']?></span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 10l5 5l5-5"/></svg></button>
-                         <button class="reduce-button btn --hidden"><span><?=$settings['reduce_button_text']?></span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 14l-5-5l-5 5"/></svg></button>
+                         <button class="extend-button btn"><?=$settings['extend_button_text']?></button>
+                         <button class="reduce-button btn --hidden"><?=$settings['reduce_button_text']?></button>
                      </div>
                  <?php endforeach; ?>
              </div>
@@ -456,7 +456,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                                     .cls-1, .cls-2 {
                                         fill-rule: evenodd;
-                                        stroke-width: 0px;
+                                        stroke-width: 0;
                                     }
 
                                     .cls-2 {
@@ -473,8 +473,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                         </svg>
                     </div>
                     <div class="review-text">{{{ item.review_description }}}</div>
-                    <button class="extend-button btn"><span>{{{ settings.extend_button_text }}}</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 10l5 5l5-5"/></svg></button>
-                    <button class="reduce-button btn --hidden"><span>{{{ settings.reduce_button_text }}}</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m17 14l-5-5l-5 5"/></svg></button>
+                    <button class="extend-button btn">{{{ settings.extend_button_text }}}</button>
+                    <button class="reduce-button btn --hidden">{{{ settings.reduce_button_text }}}</button>
                 </div>
 
                 <# } ); #>
