@@ -18,10 +18,25 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
         parent::__construct($data, $args);
 
-        wp_enqueue_style('slick', plugin_dir_url( __FILE__ ) . '../assets/style/slick.css');
-        wp_enqueue_style('google-review-css', plugin_dir_url( __FILE__ ) . '../assets/style/google-review-widget-style.css');
-        wp_enqueue_script('slick', plugin_dir_url( __FILE__ ) . '../assets/js/library/slickSlider.js', [ 'jquery'], null, true);
-        wp_enqueue_script('main', plugin_dir_url(__FILE__) . '../assets/js/google-review-widget-script.min.js', [ 'jquery','slick'], null, true );
+      // Define files and versions dynamically
+      $files = [
+        'slick-css' => '../assets/style/slick.css',
+        'google-review-css' => '../assets/style/google-review-widget-style.css',
+        'slick-js' => '../assets/js/library/slickSlider.js',
+        'main-js' => '../assets/js/google-review-widget-script.min.js'
+      ];
+
+      foreach ($files as $handle => $relative_path) {
+        $full_path = plugin_dir_path(__FILE__) . $relative_path;
+        $version = file_exists($full_path) ? filemtime($full_path) : null;
+        $url = plugin_dir_url(__FILE__) . $relative_path;
+
+        if (str_contains($handle, '-css')) {
+          wp_enqueue_style($handle, $url, [], $version);
+        } else {
+          wp_enqueue_script($handle, $url, ['jquery'], $version, true);
+        }
+      }
     }
 
     /**

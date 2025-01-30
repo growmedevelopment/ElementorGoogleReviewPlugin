@@ -1,13 +1,13 @@
 {
 	"name": "Google review Widgets",
-	"version": "1.0.8",
+	"version": "1.1.0",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
 	"homepage": "https://www.dmytrokovalenko.online/",
 	"requires": "7.4",
 	"tested": "8.1",
 	"last_updated": "2025-01-23 11:17:00",
-	"upgrade_notice": "Added Readme file",
+	"upgrade_notice": "Improved caching files",
 
 	"author": "Dmytro Kovalenko",
 	"author_homepage": "https://www.dmytrokovalenko.online/",
