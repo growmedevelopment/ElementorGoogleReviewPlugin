@@ -4,7 +4,7 @@
   }
 }
 
-@mixin transition($properties: all, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
+@mixin transition($properties: all, $duration: 0.15s, $timing-function: cubic-bezier(0.33, 1, 0.68, 1), $delay: 0s) {
   transition: $properties $duration $timing-function $delay;
 }
 
@@ -246,6 +246,21 @@
             margin-left: 7px;
           }
         }
+
+        $primary-color: #4285f4;
+        $secondary-color: #fff;
+
+        .cls-1 {
+          fill: $primary-color;
+          fill-rule: evenodd;
+          stroke-width: 0;
+        }
+
+        .cls-2 {
+          fill: $secondary-color;
+          fill-rule: evenodd;
+          stroke-width: 0;
+        }
       }
 
       .review-text {
@@ -281,6 +296,8 @@
       border: none;
       padding: 0;
       z-index: 2;
+      cursor: pointer;
+      @include transition();
 
 
       &.--next {

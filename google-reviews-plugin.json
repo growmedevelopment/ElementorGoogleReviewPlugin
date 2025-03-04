@@ -1,15 +1,15 @@
 {
 	"name": "Google review Widgets",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
-	"homepage": "https://www.dmytrokovalenko.online/",
+	"homepage": "http://dmytro-kovalenko.com/",
 	"tested": "8.1",
 	"last_updated": "2025-03-04 01:15:00",
-	"upgrade_notice": "Added supporting JS in Editor, adjust slides amount, showing only review section",
+	"upgrade_notice": "Fixed colors for confirm icons in ranking",
 
 	"author": "Dmytro Kovalenko",
-	"author_homepage": "https://www.dmytrokovalenko.online/",
+	"author_homepage": "http://dmytro-kovalenko.com",
 
 	"sections": {
 		"description": "Widget to extend Elementor, adding Google testimonial slider",
