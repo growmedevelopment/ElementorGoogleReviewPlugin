@@ -1,12 +1,12 @@
 {
 	"name": "Google review Widgets",
-	"version": "1.1.1",
+	"version": "2.0.0",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
 	"homepage": "https://www.dmytrokovalenko.online/",
 	"tested": "8.1",
-	"last_updated": "2025-01-30 01:15:00",
-	"upgrade_notice": "Removed unnecessary extending slide",
+	"last_updated": "2025-03-04 01:15:00",
+	"upgrade_notice": "Added supporting JS in Editor, adjust slides amount, showing only review section",
 
 	"author": "Dmytro Kovalenko",
 	"author_homepage": "https://www.dmytrokovalenko.online/",
