@@ -1,12 +1,12 @@
 {
 	"name": "Google review Widgets",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
 	"homepage": "http://dmytro-kovalenko.com/",
 	"tested": "8.1",
 	"last_updated": "2025-03-04 01:15:00",
-	"upgrade_notice": "Fixed colors for confirm icons in ranking",
+	"upgrade_notice": "Remove 3 dots after expand rewie",
 
 	"author": "Dmytro Kovalenko",
 	"author_homepage": "http://dmytro-kovalenko.com",

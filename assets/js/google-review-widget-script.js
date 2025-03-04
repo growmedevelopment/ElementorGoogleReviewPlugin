@@ -92,6 +92,18 @@ jQuery(window).on('elementor/frontend/init', function () {
       const newHeight = expand ? `${reviewTextElement[0].scrollHeight + 10}px` : DEFAULT_HEIGHT;
       reviewTextElement.animate({ height: newHeight }, ANIMATION_DURATION);
 
+      if (expand) {
+        reviewTextElement.css({
+          '-webkit-line-clamp': 'unset',
+          '-webkit-box-orient': 'unset'
+        });
+      } else {
+        reviewTextElement.css({
+          '-webkit-line-clamp': '6',
+          '-webkit-box-orient': 'vertical'
+        });
+      }
+
       // Toggle buttons visibility
       parentCard.find('.extend-button').toggleClass('--hidden', expand);
       parentCard.find('.reduce-button').toggleClass('--hidden', !expand);
