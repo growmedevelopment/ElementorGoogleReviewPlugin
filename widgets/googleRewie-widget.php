@@ -361,17 +361,27 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-        'hide_google_logo',
-        [
-          'label' => esc_html__('Hide google logo', 'google-review'),
-          'type' => \Elementor\Controls_Manager::SWITCHER,
-          'label_on' => esc_html__('Yes', 'google-review'),
-          'label_off' => esc_html__('No', 'google-review'),
-          'return_value' => 'yes',
-          'default' => 'no',
-        ]
-      );
+        $this->add_control('hide_google_logo',
+          [
+            'label' => esc_html__('Hide google logo', 'google-review'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Yes', 'google-review'),
+            'label_off' => esc_html__('No', 'google-review'),
+            'return_value' => 'yes',
+            'default' => 'no',
+          ]
+        );
+
+        $this->add_control('hide_review_date',
+          [
+            'label' => esc_html__('Hide review date', 'google-review'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Yes', 'google-review'),
+            'label_off' => esc_html__('No', 'google-review'),
+            'return_value' => 'yes',
+            'default' => 'no',
+          ]
+        );
 
         $this->end_controls_section();
         /* End repeater */
@@ -439,7 +449,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                                       <p class="subtitle"><?= $item['subtitle']; ?></p>
                                     <?php endif?>
 
-                                     <p class="date"><?= $item['date']; ?></p>
+                                   <p class="date <?= $settings['hide_review_date'] === 'yes' ? '--hidden' :'' ?>"><?= $item['date']; ?></p>
+
                                  </div>
 
                              </div>
@@ -478,6 +489,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
       <#
       var hiddenClass = settings.show_only_reviews === 'yes' ? '--hidden' : '';
       var hiddenGoogleClass = settings.hide_google_logo === 'yes' ? '--hidden' : '';
+      var hiddenDateClass = settings.hide_review_date === 'yes' ? '--hidden' : '';
       #>
 
         <div class="review-widget {{{ settings.class_name }}}">
@@ -515,10 +527,14 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                             <div class="user-info">
                                 <p class="name">{{{ item.text }}}</p>
+
                                 <# if (item.subtitle.length) { #>
-                                <p class="subtitle">{{{ item.subtitle }}}</p>
+                                  <p class="subtitle">{{{ item.subtitle }}}</p>
                                 <# }#>
-                                <p class="date">{{{ item.date }}}</p>
+
+
+                                <p class="date {{{hiddenDateClass}}}">{{{ item.date }}}</p>
+
                             </div>
 
                         </div>
