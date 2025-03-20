@@ -77,6 +77,13 @@
 
   .review-cards {
 
+    &[data-review-count="2"]{
+      .review-card .user-container .user .user-info .name{
+        max-width: 100%;
+      }
+    }
+
+
     &:not(.slick-initialized) {
       overflow-x: scroll;
       display: flex;
@@ -197,6 +204,7 @@
             width: 40px;
             border-radius: 50%;
             margin-right: 15px;
+            object-fit: contain;
           }
 
           .initial {
