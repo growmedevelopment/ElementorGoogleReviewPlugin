@@ -159,6 +159,16 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
+          'class_name',
+          [
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'label' => esc_html__( 'Custom class name', 'google-review' ),
+            'placeholder' => esc_html__( 'Enter your css class', 'google-review' ),
+            'default' => '',
+          ]
+        );
+
+        $this->add_control(
           'show_only_reviews',
           [
             'label' => esc_html__('Show only reviews section', 'google-review'),
@@ -370,7 +380,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $slides_to_show = $settings['slides_to_show'];
         ?>
 
-         <div class="review-widget">
+         <div class="review-widget <?= $settings['class_name'] ?>">
              <div class="google-text--container <?= $show_only_reviews === 'yes' ? '--hidden' :'' ?>">
                 <p class="rating-title"><?=$settings['title']?></p>
                  <div class="stars">
@@ -447,7 +457,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
       var hiddenClass = settings.show_only_reviews === 'yes' ? '--hidden' : '';
       #>
 
-        <div class="review-widget">
+        <div class="review-widget {{{ settings.class_name }}}">
             <div class="google-text--container {{{ hiddenClass }}}">
                 <p class="rating-title">{{{ settings.title }}}</p>
                 <div class="stars">
