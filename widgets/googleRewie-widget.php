@@ -283,6 +283,14 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                         'label_block' => true,
                     ],
                     [
+                      'name' => 'subtitle',
+                      'label' => esc_html__( 'Subtitle', 'google-review' ),
+                      'type' => \Elementor\Controls_Manager::TEXT,
+                      'placeholder' => esc_html__( '', 'google-review' ),
+                      'default' => esc_html__( '', 'google-review' ),
+                      'label_block' => true,
+                    ],
+                    [
                         'name' => 'avatar_url',
                         'label' => esc_html__( 'link to avatar', 'google-review' ),
                         'type' => \Elementor\Controls_Manager::TEXT,
@@ -426,6 +434,11 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                                  <div class="user-info">
                                      <p class="name"><?= $item['text']; ?></p>
+
+                                    <?php if (!empty($item['subtitle'])) : ?>
+                                      <p class="subtitle"><?= $item['subtitle']; ?></p>
+                                    <?php endif?>
+
                                      <p class="date"><?= $item['date']; ?></p>
                                  </div>
 
@@ -502,6 +515,9 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                             <div class="user-info">
                                 <p class="name">{{{ item.text }}}</p>
+                                <# if (item.subtitle.length) { #>
+                                <p class="subtitle">{{{ item.subtitle }}}</p>
+                                <# }#>
                                 <p class="date">{{{ item.date }}}</p>
                             </div>
 
