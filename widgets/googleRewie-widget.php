@@ -475,8 +475,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                          </div>
                          <div class="review-text"><?= $item['review_description']; ?></div>
-                         <button class="extend-button btn"><?=$settings['extend_button_text']?></button>
-                         <button class="reduce-button btn --hidden"><?=$settings['reduce_button_text']?></button>
+                         <button class="extend-button review-card-btn"><?=$settings['extend_button_text']?></button>
+                         <button class="reduce-button review-card-btn --hidden"><?=$settings['reduce_button_text']?></button>
                      </div>
                  <?php endforeach; ?>
              </div>
@@ -562,8 +562,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                         </svg>
                     </div>
                     <div class="review-text">{{{ item.review_description }}}</div>
-                    <button class="extend-button btn">{{{ settings.extend_button_text }}}</button>
-                    <button class="reduce-button btn --hidden">{{{ settings.reduce_button_text }}}</button>
+                    <button class="extend-button review-card-btn">{{{ settings.extend_button_text }}}</button>
+                    <button class="reduce-button review-card-btn --hidden">{{{ settings.reduce_button_text }}}</button>
                 </div>
 
                 <# } ); #>
