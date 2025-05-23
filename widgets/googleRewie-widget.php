@@ -183,7 +183,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->add_control(
           'slides_to_show',
           [
-            'label' => esc_html__('Slides to Show', 'google-review'),
+            'label' => esc_html__('Slides per view', 'google-review'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
               '2' => 2,
@@ -200,20 +200,25 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__( 'Text section', 'google-review' ),
+                'label' => esc_html__( 'Main section', 'google-review' ),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
-        $this->add_control(
-            'title',
-            [
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'label' => esc_html__( 'Title', 'google-review' ),
-                'placeholder' => esc_html__( 'Enter your title', 'google-review' ),
-                'default'=> esc_html__( 'Good', 'google-review' ),
-            ]
-        );
+      $this->add_control(
+        'title',
+        [
+          'type'    => \Elementor\Controls_Manager::SELECT,
+          'label'   => esc_html__( 'Title', 'google-review' ),
+          'options' => [
+            'excellent' => esc_html__( 'Excellent', 'google-review' ),
+            'good'      => esc_html__( 'Good', 'google-review' ),
+            'average'   => esc_html__( 'Average', 'google-review' ),
+            'poor'      => esc_html__( 'Poor', 'google-review' ),
+          ],
+          'default' => 'excellent',
+        ]
+      );
 
         $this->add_control(
             'extend_button_text',
@@ -243,9 +248,32 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                 'min' => 3,
                 'max' => 5,
                 'step' => 0.5,
-                'default' => 4,
+                'default' => 5,
             ]
         );
+
+      $this->add_control(
+        'text_section_color',
+        [
+          'label' => esc_html__( 'Text color', 'google-review' ),
+          'type' => \Elementor\Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} .google-text--container ' => 'color: {{VALUE}}',
+          ],
+          'default' => '#000',
+        ]
+      );
+
+      $this->add_control(
+        'background_color',
+        [
+          'label' => esc_html__( 'Background color', 'google-review' ),
+          'type' => \Elementor\Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} .review-widget' => 'background-color: {{VALUE}}',
+          ],
+        ]
+      );
 
         $this->add_control(
             'text',
@@ -256,6 +284,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                 'default'=>esc_html__( 'Based on __ reviews', 'google-review' ),
             ]
         );
+
+
 
         $this->end_controls_section();
 
@@ -350,16 +380,30 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'background_color',
-            [
-                'label' => esc_html__( 'Background color', 'google-review' ),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .review-widget' => 'background-color: {{VALUE}}',
-                ],
-            ]
-        );
+      $this->add_control(
+        'text_item_color',
+        [
+          'label' => esc_html__( 'Text color of review item', 'google-review' ),
+          'type' => \Elementor\Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} .review-card' => 'color: {{VALUE}}',
+          ],
+          'default' => '#000',
+        ]
+      );
+
+      $this->add_control(
+        'expand_button_color',
+        [
+          'label' => esc_html__( 'Color of expand/collapse button', 'google-review' ),
+          'type' => \Elementor\Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} .review-card .review-card-btn' => 'color: {{VALUE}}',
+          ],
+        ]
+      );
+
+
 
         $this->add_control('hide_google_logo',
           [
@@ -399,10 +443,33 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
     protected function render(): void
     {
         $settings = $this->get_settings_for_display();
-        $half_of_star = file_get_contents(plugin_dir_url( __DIR__ ) . 'assets/icons/half_of_star.svg',true);
-        $empty_star = file_get_contents(plugin_dir_url( __DIR__ ) . 'assets/icons/empty_star.svg',true);
-        $full_star = file_get_contents(plugin_dir_url( __DIR__ ) . 'assets/icons/full_star.svg', true);
-        $verified_tick = file_get_contents(plugin_dir_url( __DIR__ ) . 'assets/icons/verified_tick.svg', true);
+        $half_of_star = '<svg width="17px" height="17px" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g transform="matrix(1,0,0,1,-447.393,-260.031)"><g transform="matrix(1.01647,0,0,1.01647,4.97715,-123.684)"><path d="M442.928,389.411C442.802,389.411 442.68,389.451 442.578,389.525L439.127,392.034C438.852,392.234 438.48,392.234 438.205,392.034C437.929,391.834 437.814,391.48 437.92,391.156L439.239,387.099C439.278,386.98 439.278,386.851 439.239,386.731C439.201,386.612 439.125,386.508 439.023,386.434L435.571,383.927C435.296,383.727 435.18,383.373 435.285,383.05C435.391,382.726 435.692,382.507 436.032,382.507L440.298,382.509C440.424,382.509 440.547,382.469 440.648,382.395C440.75,382.321 440.826,382.217 440.864,382.098L442.181,378.04C442.286,377.716 442.588,377.497 442.928,377.497L442.928,389.411Z" style="fill:rgb(246,187,6);"/></g><g transform="matrix(-1.01647,0,0,1.01647,905.424,-123.684)"><path d="M442.928,389.411C442.802,389.411 442.68,389.451 442.578,389.525L439.127,392.034C438.852,392.234 438.48,392.234 438.205,392.034C437.929,391.834 437.814,391.48 437.92,391.156L439.239,387.099C439.278,386.98 439.278,386.851 439.239,386.731C439.201,386.612 439.125,386.508 439.023,386.434L435.571,383.927C435.296,383.727 435.18,383.373 435.285,383.05C435.391,382.726 435.692,382.507 436.032,382.507L440.298,382.509C440.424,382.509 440.547,382.469 440.648,382.395C440.75,382.321 440.826,382.217 440.864,382.098L442.181,378.04C442.286,377.716 442.588,377.497 442.928,377.497L442.928,389.411Z" style="fill:rgb(204,204,204);"/></g></g></svg>';
+        $empty_star = '<svg width="17px" height="17px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg"  xml:space="preserve"  style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g transform="matrix(1,0,0,1,-468.008,-259.996)"><g transform="matrix(1.01647,0,0,1.01647,25.5914,-123.719)"><path d="M442.181,378.04C442.286,377.716 442.588,377.497 442.928,377.497C443.268,377.497 443.569,377.716 443.674,378.04L444.991,382.098C445.03,382.217 445.106,382.321 445.207,382.395C445.309,382.469 445.432,382.509 445.557,382.509L449.824,382.507C450.164,382.507 450.465,382.726 450.57,383.05C450.675,383.373 450.56,383.727 450.285,383.927L446.833,386.434C446.731,386.508 446.655,386.612 446.616,386.731C446.577,386.851 446.578,386.98 446.616,387.099L447.936,391.156C448.041,391.48 447.926,391.834 447.651,392.034C447.376,392.234 447.003,392.234 446.728,392.034L443.278,389.525C443.176,389.451 443.054,389.411 442.928,389.411C442.802,389.411 442.68,389.451 442.578,389.525L439.127,392.034C438.852,392.234 438.48,392.234 438.205,392.034C437.929,391.834 437.814,391.48 437.92,391.156L439.239,387.099C439.278,386.98 439.278,386.851 439.239,386.731C439.201,386.612 439.125,386.508 439.023,386.434L435.571,383.927C435.296,383.727 435.18,383.373 435.285,383.05C435.391,382.726 435.692,382.507 436.032,382.507L440.298,382.509C440.424,382.509 440.547,382.469 440.648,382.395C440.75,382.321 440.826,382.217 440.864,382.098L442.181,378.04Z" style="fill:rgb(204,204,204);"/></g></g></svg>';
+        $full_star = '<svg width="17px" height="17px" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g transform="matrix(1,0,0,1,-427.432,-259.996)"><g transform="matrix(1.01647,0,0,1.01647,-14.9846,-123.719)"><path d="M442.181,378.04C442.286,377.716 442.588,377.497 442.928,377.497C443.268,377.497 443.569,377.716 443.674,378.04L444.991,382.098C445.03,382.217 445.106,382.321 445.207,382.395C445.309,382.469 445.432,382.509 445.557,382.509L449.824,382.507C450.164,382.507 450.465,382.726 450.57,383.05C450.675,383.373 450.56,383.727 450.285,383.927L446.833,386.434C446.731,386.508 446.655,386.612 446.616,386.731C446.577,386.851 446.578,386.98 446.616,387.099L447.936,391.156C448.041,391.48 447.926,391.834 447.651,392.034C447.376,392.234 447.003,392.234 446.728,392.034L443.278,389.525C443.176,389.451 443.054,389.411 442.928,389.411C442.802,389.411 442.68,389.451 442.578,389.525L439.127,392.034C438.852,392.234 438.48,392.234 438.205,392.034C437.929,391.834 437.814,391.48 437.92,391.156L439.239,387.099C439.278,386.98 439.278,386.851 439.239,386.731C439.201,386.612 439.125,386.508 439.023,386.434L435.571,383.927C435.296,383.727 435.18,383.373 435.285,383.05C435.391,382.726 435.692,382.507 436.032,382.507L440.298,382.509C440.424,382.509 440.547,382.469 440.648,382.395C440.75,382.321 440.826,382.217 440.864,382.098L442.181,378.04Z" style="fill:rgb(246,187,6);"/></g></g></svg>';
+        $verified_tick = '<svg id="Layer_2" width="15px" height="15px" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: #4285f4;
+            }
+
+            .cls-1, .cls-2 {
+            fill-rule: evenodd;
+            stroke-width: 0px;
+            }
+
+            .cls-2 {
+            fill: #fff;
+            }
+        </style>
+    </defs>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <g>
+            <path class="cls-1" d="M7.29.34c.17-.22.43-.34.71-.34s.54.13.71.34l.78,1.01c.06.08.15.14.25.16.1.03.2.02.3-.02l1.18-.48c.26-.1.54-.08.78.05.24.14.4.38.44.65l.18,1.26c.01.1.06.19.13.26.07.07.16.12.26.13l1.26.18c.27.04.51.2.65.44.14.24.16.53.05.78l-.48,1.18c-.04.09-.04.2-.02.3.03.1.08.18.16.25l1.01.79c.22.17.34.43.34.71s-.13.54-.34.71l-1.01.78c-.08.06-.14.15-.16.25-.03.1-.02.2.02.3l.48,1.18c.1.26.08.54-.05.78-.14.24-.38.4-.65.44l-1.26.18c-.1.01-.19.06-.26.13s-.12.16-.13.26l-.18,1.27c-.04.27-.2.51-.44.65-.24.14-.53.16-.78.05l-1.18-.48c-.09-.04-.2-.04-.3-.02-.1.03-.18.08-.25.16l-.78,1.01c-.17.22-.43.34-.71.34s-.54-.13-.71-.34l-.78-1.01c-.06-.08-.15-.14-.25-.16-.1-.03-.2-.02-.3.02l-1.18.48c-.26.1-.54.08-.78-.05-.24-.14-.4-.38-.44-.65l-.18-1.27c-.01-.1-.06-.19-.13-.26-.07-.07-.16-.12-.26-.13l-1.26-.18c-.27-.04-.51-.2-.65-.44-.14-.24-.16-.53-.05-.78l.48-1.18c.04-.09.04-.2.02-.3-.03-.1-.08-.18-.16-.25l-1.01-.78c-.22-.17-.34-.43-.34-.71s.13-.54.34-.71l1.01-.79c.08-.06.14-.15.16-.25.03-.1.02-.2-.02-.3l-.48-1.18c-.1-.26-.08-.54.05-.78.14-.24.38-.4.65-.44l1.26-.18c.1-.01.19-.06.26-.13.07-.07.12-.16.13-.26l.18-1.26c.04-.27.2-.51.44-.65.24-.14.53-.16.78-.05l1.18.48c.09.04.2.04.3.02.1-.03.18-.08.25-.16l.78-1.01Z"/>
+            <path class="cls-2" d="M7.74,8.05l2.49-2.5c.19-.19.49-.19.67,0l.67.67c.19.19.19.49,0,.67l-3.32,3.33s-.02.03-.03.04l-.67.67c-.09.09-.22.14-.34.14s-.24-.05-.34-.14l-.67-.67s-.02-.02-.03-.04l-1.74-1.74c-.19-.19-.19-.48,0-.67l.67-.67c.19-.19.49-.19.67,0l1.32,1.32h0s.12.12.12.12h0s1.35,1.33,1.35,1.33l-.82-1.86Z"/>
+        </g>
+    </g>
+</svg>';
         $show_only_reviews = $settings['show_only_reviews'];
         $slides_to_show = $settings['slides_to_show'];
         ?>
@@ -412,7 +479,8 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                 <p class="rating-title"><?=$settings['title']?></p>
                  <div class="stars">
                      <?php
-                     $fullNumber = filter_var($settings['stars'], FILTER_VALIDATE_INT);
+
+                     $fullNumber = filter_var($settings['stars'], FILTER_VALIDATE_INT | FILTER_VALIDATE_FLOAT);
 
                      for ($i = 1; $i <= $settings['stars']; $i++){
                          echo $full_star;
@@ -443,10 +511,10 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                                 <?php endif?>
 
                                  <div class="user-info">
-                                     <p class="name"><?= $item['text']; ?></p>
+                                     <p class="name"><?= strip_tags($item['text']); ?></p>
 
                                     <?php if (!empty($item['subtitle'])) : ?>
-                                      <p class="subtitle"><?= $item['subtitle']; ?></p>
+                                      <p class="subtitle"><?= strip_tags($item['subtitle']); ?></p>
                                     <?php endif?>
 
                                    <p class="date <?= $settings['hide_review_date'] === 'yes' ? '--hidden' :'' ?>"><?= $item['date']; ?></p>
@@ -459,7 +527,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
 
                          <div class="rating">
                              <?php
-                             $fullNumber = filter_var($item['stars'], FILTER_VALIDATE_INT);
+                             $fullNumber = filter_var($item['stars'], FILTER_VALIDATE_INT  | FILTER_VALIDATE_FLOAT);
 
                              for ($i = 1; $i <= $item['stars']; $i++){
                                  echo $full_star;
@@ -474,7 +542,7 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
                              ?>
 
                          </div>
-                         <div class="review-text"><?= $item['review_description']; ?></div>
+                         <div class="review-text"><?= strip_tags($item['review_description']); ?>  </div>
                          <button class="extend-button review-card-btn"><?=$settings['extend_button_text']?></button>
                          <button class="reduce-button review-card-btn --hidden"><?=$settings['reduce_button_text']?></button>
                      </div>

@@ -43,7 +43,6 @@
     flex-direction: column;
     min-width: 300px;
     margin-bottom: 25px;
-    color: #000;
 
     @include tablet {
       margin-bottom: 0;
@@ -54,6 +53,7 @@
       display: block;
       margin-bottom: 6px;
       font-weight: 700;
+      text-transform: capitalize;
     }
 
     .stars {
@@ -230,14 +230,12 @@
               padding-right: 15px;
               white-space: nowrap;
               text-overflow: ellipsis;
-              color: #000;
               margin: 0 0 2px 0;
               max-width: 135px;
             }
 
             .date {
               margin: 0;
-              color: #000;
               opacity: .5;
               font-size: 11.2px;
             }
@@ -276,7 +274,6 @@
       }
 
       .review-text {
-        color: #000;
         text-overflow: ellipsis;
         overflow: hidden;
         line-height: 21.75px;

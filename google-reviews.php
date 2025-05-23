@@ -3,9 +3,9 @@
 /**
  * Plugin Name: Google review Widgets
  * Description: Elementor widget Google testimony.
- * Version:     2.1.3
+ * Version:     2.1.4
  * Author:      Dmytro Kovalenko
- * Author URI:  https://www.dmytrokovalenko.online/
+ * Author URI:  hhttps://dmytro-kovalenko.com/
  * Text Domain: google-review
  *
  * Elementor tested up to: 3.26.4

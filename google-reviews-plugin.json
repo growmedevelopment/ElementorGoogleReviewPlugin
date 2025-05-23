@@ -1,15 +1,15 @@
 {
 	"name": "Google review Widgets",
-	"version": "2.1.3",
+	"version": "2.1.4",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
-	"homepage": "http://dmytro-kovalenko.com/",
+	"homepage": "https://dmytro-kovalenko.com/",
 	"tested": "8.1",
 	"last_updated": "2025-05-22 03:30:00",
-	"upgrade_notice": "Fixed style bugs",
+	"upgrade_notice": "Added style for text expand button",
 
 	"author": "Dmytro Kovalenko",
-	"author_homepage": "http://dmytro-kovalenko.com",
+	"author_homepage": "https://dmytro-kovalenko.com/",
 
 	"sections": {
 		"description": "Widget to extend Elementor, adding Google testimonial slider",
