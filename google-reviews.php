@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Plugin Name: Google review Widgets
- * Description: Elementor widget Google testimony.
- * Version:     2.1.4
+ * Plugin Name: Elementor Google reviews
+ * Description: Elementor widget Google reviews.
+ * Version:     2.2.4
  * Author:      Dmytro Kovalenko
- * Author URI:  hhttps://dmytro-kovalenko.com/
- * Text Domain: google-review
+ * Author URI:  https://dmytro-kovalenko.com/
+ * Text Domain: google-reviews
  *
  * Elementor tested up to: 3.26.4
  * Elementor Pro tested up to: 3.26.3
- * Requires PHP: 8.1
+ * Requires PHP: 7.4
  */
 
 use Elementor\Widgets_Manager;
