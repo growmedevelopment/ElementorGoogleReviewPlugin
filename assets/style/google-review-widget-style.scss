@@ -88,12 +88,28 @@
       display: grid;
       gap: 1rem;
 
-      &[data-cols-mobile="1"] { grid-template-columns: repeat(1, 1fr); }
+      &[data-cols-mobile="1"] {
+        overflow-x: scroll;
+        display: flex;
+        align-content: center;
+        align-items: start;
+        .review-card{
+          flex: 0 0 100%;
+        }
+      }
       &[data-cols-mobile="2"] { grid-template-columns: repeat(2, 1fr); }
 
 
       @include tablet {
-        &[data-cols-tablet="1"] { grid-template-columns: repeat(1, 1fr); }
+        &[data-cols-mobile="1"] {
+          display: grid;
+          overflow-x: initial;
+          grid-template-columns: repeat(1, 1fr);
+
+          .review-card{
+            flex: initial;
+          }
+        }
         &[data-cols-tablet="2"] { grid-template-columns: repeat(2, 1fr); }
         &[data-cols-tablet="3"] { grid-template-columns: repeat(3, 1fr); }
       }
