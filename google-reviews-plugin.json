@@ -1,12 +1,12 @@
 {
 	"name": "Google review Widgets",
-	"version": "2.2.0",
+	"version": "2.2.2",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
 	"homepage": "https://dmytro-kovalenko.com/",
 	"tested": "8.1",
 	"last_updated": "2025-06-12 12:30:00",
-	"upgrade_notice": "Adjusted mobile view for showing 1 column ",
+	"upgrade_notice": "fixed icon colors for review author",
 
 	"author": "Dmytro Kovalenko",
 	"author_homepage": "https://dmytro-kovalenko.com/",
@@ -24,8 +24,8 @@
     },
 
 	"banners": {
-		"low": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/banner_low.png",
-		"high": "http://w-shadow.com/files/external-update-example/assets/banner-1544x500.png"
+		"low": "-",
+		"high": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/banner_low.png"
 	},
 
 	"translations": [],

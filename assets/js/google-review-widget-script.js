@@ -53,7 +53,6 @@ jQuery(window).on('elementor/frontend/init', function () {
       });
     }
 
-    // ✅ These handlers now work for both sliders and static grid
     $scope.on('click', '.extend-button', function () {
       toggleReviewHeight(this, true);
     });
@@ -62,7 +61,7 @@ jQuery(window).on('elementor/frontend/init', function () {
       toggleReviewHeight(this, false);
     });
 
-    // ✅ Re-check text overflow in all cards within this widget instance
+    applyRandomColors($scope.find('.initial'), ['#ab47bc', '#00897b', '#8d6e63', '#ea4335', '#689f38']);
     removeButtonButtons($scope);
 
     /**
