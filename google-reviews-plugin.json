@@ -1,11 +1,11 @@
 {
 	"name": "Google review Widgets",
-	"version": "2.1.4",
+	"version": "2.1.5",
 	"download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
 
 	"homepage": "https://dmytro-kovalenko.com/",
 	"tested": "8.1",
-	"last_updated": "2025-05-22 03:30:00",
+	"last_updated": "2025-06-12 03:30:00",
 	"upgrade_notice": "Added style for text expand button",
 
 	"author": "Dmytro Kovalenko",

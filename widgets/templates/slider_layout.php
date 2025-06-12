@@ -1,15 +1,11 @@
 <?php
-
-
-
-
 $full_star = $stars['full_star'];
 $half_of_star = $stars['half_of_star'];
 $empty_star = $stars['empty_star'];
 $verified_tick = $stars['verified_tick'];
 ?>
 
-<div class="review-cards '--slider'" data-review-count="<?=$settings['reviews_per_view']?>">
+<div class="review-cards --slider" data-review-count="<?=$settings['reviews_per_slide']?>">
   <?php foreach ( $settings['list'] as $item ) : ?>
     <div class="review-card">
       <div class="user-container">

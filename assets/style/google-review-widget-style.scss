@@ -1,5 +1,11 @@
 @mixin tablet {
-  @media (width >= 900px) {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: 1025px) {
     @content;
   }
 }
@@ -77,6 +83,33 @@
 
   .review-cards {
 
+
+    &.--thumbnails{
+      display: grid;
+      gap: 1rem;
+
+      &[data-cols-mobile="1"] { grid-template-columns: repeat(1, 1fr); }
+      &[data-cols-mobile="2"] { grid-template-columns: repeat(2, 1fr); }
+
+
+      @include tablet {
+        &[data-cols-tablet="1"] { grid-template-columns: repeat(1, 1fr); }
+        &[data-cols-tablet="2"] { grid-template-columns: repeat(2, 1fr); }
+        &[data-cols-tablet="3"] { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      @include laptop {
+        &[data-cols-desktop="1"] { grid-template-columns: repeat(1, 1fr); }
+        &[data-cols-desktop="2"] { grid-template-columns: repeat(2, 1fr); }
+        &[data-cols-desktop="3"] { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      .review-card .review-text{
+        overflow: scroll;
+      }
+    }
+
+
     &[data-review-count="2"]{
       .review-card .user-container .user .user-info .name{
         max-width: 100%;
@@ -84,7 +117,7 @@
     }
 
 
-    &:not(.slick-initialized) {
+    &.--slider:not(.slick-initialized) {
       overflow-x: scroll;
       display: flex;
       align-content: center;

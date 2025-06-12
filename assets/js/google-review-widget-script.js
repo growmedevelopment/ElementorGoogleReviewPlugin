@@ -1,60 +1,59 @@
 jQuery(window).on('elementor/frontend/init', function () {
   elementorFrontend.hooks.addAction('frontend/element_ready/google-review-widget.default', function ($scope) {
+    const slider = $scope.find('.review-cards.--slider');
 
-    const slider = $scope.find('.review-cards');
-    if (!slider.length) return; // Exit if no slider found
+    // Initialize Slick Slider only if the slider exists
+    if (slider.length) {
+      let slidesToShow = parseInt(slider.attr('data-review-count'), 10) || 1;
 
-    let slidesToShow = parseInt(slider.attr('data-review-count'), 10) || 1; // Ensure it's a number
+      if (slider.hasClass('slick-initialized')) {
+        slider.slick('unslick');
+      }
 
-    // Remove existing Slick instance before re-initializing (to prevent duplicate init)
-    if (slider.hasClass('slick-initialized')) {
-      slider.slick('unslick');
+      slider.on('init', function () {
+        removeButtonButtons($scope);
+        applyRandomColors($scope.find('.initial'), ['#ab47bc', '#00897b', '#8d6e63', '#ea4335', '#689f38']);
+      });
+
+      slider.slick({
+        infinite: true,
+        draggable: false,
+        dots: true,
+        arrows: false,
+        autoplaySpeed: 2000,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        prevArrow: `<button class="slick-arrow --prev"></button>`,
+        nextArrow: `<button class="slick-arrow --next"></button>`,
+        mobileFirst: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: slidesToShow,
+              dots: false,
+              arrows: true,
+            },
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 2,
+              dots: false,
+              arrows: true,
+            },
+          },
+          {
+            breakpoint: 576,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+        ],
+      });
     }
 
-    slider.on('init', function () {
-      removeButtonButtons();
-      applyRandomColors('.initial', ['#ab47bc', '#00897b', '#8d6e63', '#ea4335', '#689f38']);
-    });
-
-    // Initialize Slick Slider
-    slider.slick({
-      infinite: true,
-      draggable: false,
-      dots: true,
-      arrows: false,
-      autoplaySpeed: 2000,
-      slidesToShow: 1,
-      adaptiveHeight: true,
-      prevArrow: `<button class="slick-arrow --prev"></button>`,
-      nextArrow: `<button class="slick-arrow --next"></button>`,
-      mobileFirst: true,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: slidesToShow,
-            dots: false,
-            arrows: true,
-          },
-        },
-        {
-          breakpoint: 900,
-          settings: {
-            slidesToShow: 2,
-            dots: false,
-            arrows: true,
-          },
-        },
-        {
-          breakpoint: 576,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-      ],
-    });
-
-    // Attach event listeners efficiently using event delegation
+    // ✅ These handlers now work for both sliders and static grid
     $scope.on('click', '.extend-button', function () {
       toggleReviewHeight(this, true);
     });
@@ -63,21 +62,20 @@ jQuery(window).on('elementor/frontend/init', function () {
       toggleReviewHeight(this, false);
     });
 
+    // ✅ Re-check text overflow in all cards within this widget instance
+    removeButtonButtons($scope);
+
     /**
-     * Apply random colors to elements
-     * @param {string} selector - CSS selector
-     * @param {string[]} colors - Array of hex color codes
+     * Apply random colors to elements in the current scope
      */
-    function applyRandomColors(selector, colors) {
-      jQuery(selector).each(function () {
+    function applyRandomColors($elements, colors) {
+      $elements.each(function () {
         jQuery(this).css('background-color', colors[Math.floor(Math.random() * colors.length)]);
       });
     }
 
     /**
-     * Toggle review height when clicking expand/reduce buttons
-     * @param {HTMLElement} button - Clicked button
-     * @param {boolean} expand - Whether to expand or collapse
+     * Toggle review height on click
      */
     function toggleReviewHeight(button, expand) {
       const DEFAULT_HEIGHT = '130px';
@@ -88,41 +86,33 @@ jQuery(window).on('elementor/frontend/init', function () {
 
       if (!reviewTextElement.length) return;
 
-      // Adjust height based on action
       const newHeight = expand ? `${reviewTextElement[0].scrollHeight + 10}px` : DEFAULT_HEIGHT;
       reviewTextElement.animate({ height: newHeight }, ANIMATION_DURATION);
 
-      if (expand) {
-        reviewTextElement.css({
-          '-webkit-line-clamp': 'unset',
-          '-webkit-box-orient': 'unset'
-        });
-      } else {
-        reviewTextElement.css({
-          '-webkit-line-clamp': '6',
-          '-webkit-box-orient': 'vertical'
-        });
-      }
+      reviewTextElement.css({
+        '-webkit-line-clamp': expand ? 'unset' : '6',
+        '-webkit-box-orient': expand ? 'unset' : 'vertical',
+      });
 
-      // Toggle buttons visibility
       parentCard.find('.extend-button').toggleClass('--hidden', expand);
       parentCard.find('.reduce-button').toggleClass('--hidden', !expand);
     }
 
     /**
-     * Remove unnecessary Extend/Reduce buttons if text fits
+     * Remove Extend/Reduce buttons if not needed
      */
-    function removeButtonButtons() {
-      jQuery('.review-card').each(function () {
-        const textContainer = jQuery(this).find('.review-text');
-        const extendButton = jQuery(this).find('.extend-button');
-        const reduceButton = jQuery(this).find('.reduce-button');
+    function removeButtonButtons($root) {
+      $root.find('.review-card').each(function () {
+        const $card = jQuery(this);
+        const $text = $card.find('.review-text');
+        const $extend = $card.find('.extend-button');
+        const $reduce = $card.find('.reduce-button');
 
-        if (!textContainer.length || !extendButton.length || !reduceButton.length) return;
+        if (!$text.length || !$extend.length || !$reduce.length) return;
 
-        if (textContainer[0].clientHeight >= textContainer[0].scrollHeight) {
-          extendButton.remove();
-          reduceButton.remove();
+        if ($text[0].clientHeight >= $text[0].scrollHeight) {
+          $extend.remove();
+          $reduce.remove();
         }
       });
     }

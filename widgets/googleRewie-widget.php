@@ -73,9 +73,4 @@ class Essential_Elementor_Google_Review_Widget extends \Elementor\Widget_Base {
   protected function render(): void {
     include plugin_dir_path(__FILE__) . 'templates/admin_editor_render.php';
   }
-
-  // If you'd like to support live preview in the Elementor editor:
-  // protected function content_template(): void {
-  //     include plugin_dir_path(__FILE__) . 'templates/front_end_render.php';
-  // }
 }
