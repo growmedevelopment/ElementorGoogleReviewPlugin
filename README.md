@@ -89,7 +89,7 @@ Don't forget update google-reviews-plugin.json and download it to the project fo
   "slug": "google-review-widgets",
   "version": "1.0.7",
   "author": "Dmytro Kovalenko",
-  "homepage": "https://www.dmytrokovalenko.online/",
+  "homepage": "https://dmytro-kovalenko.com/",
   "download_url": "http://wpplugins-googletestimonials.growmeconsulting.ca/google-reviews/google-reviews.zip",
   "requires": "5.8",
   "tested": "6.2",
