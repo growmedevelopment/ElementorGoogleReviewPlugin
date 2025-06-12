@@ -10,45 +10,51 @@ class ControlsBuilder {
   {
     // General settings section
     $widget->start_controls_section('general_settings_section', [
-        'label' => esc_html__( 'General settings', 'google-review' ),
-        'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-      ]
-    );
+      'label' => esc_html__('General settings', 'google-review'),
+      'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+    ]);
 
-    $widget->add_control(
-      'class_name',
-      [
-        'type' => \Elementor\Controls_Manager::TEXT,
-        'label' => esc_html__( 'Custom class name', 'google-review' ),
-        'placeholder' => esc_html__( 'Enter your css class', 'google-review' ),
-        'default' => '',
-      ]
-    );
+    $widget->add_control('class_name', [
+      'type'        => \Elementor\Controls_Manager::TEXT,
+      'label'       => esc_html__('Custom class name', 'google-review'),
+      'placeholder' => esc_html__('Enter your css class', 'google-review'),
+      'default'     => '',
+    ]);
 
-    $widget->add_control(
-      'show_only_reviews',
-      [
-        'label' => esc_html__('Show only reviews section', 'google-review'),
-        'type' => \Elementor\Controls_Manager::SWITCHER,
-        'label_on' => esc_html__('Yes', 'google-review'),
-        'label_off' => esc_html__('No', 'google-review'),
-        'return_value' => 'yes',
-        'default' => 'no',
-      ]
-    );
+    $widget->add_control('is_slider', [
+      'label'        => esc_html__('Use Slider', 'google-review'),
+      'type'         => \Elementor\Controls_Manager::SWITCHER,
+      'label_on'     => esc_html__('Yes', 'google-review'),
+      'label_off'    => esc_html__('No', 'google-review'),
+      'return_value' => 'yes',
+      'default'      => '',
+    ]);
 
-    $widget->add_control(
-      'slides_to_show',
-      [
-        'label' => esc_html__('Slides per view', 'google-review'),
-        'type' => \Elementor\Controls_Manager::SELECT,
-        'options' => [
-          '2' => 2,
-          '3' => 3,
-        ],
-        'default' => '3',
-      ]
-    );
+    $widget->add_control('show_only_reviews', [
+      'label'        => esc_html__('Show only reviews section', 'google-review'),
+      'type'         => \Elementor\Controls_Manager::SWITCHER,
+      'label_on'     => esc_html__('Yes', 'google-review'),
+      'label_off'    => esc_html__('No', 'google-review'),
+      'return_value' => 'yes',
+      'default'      => '',
+    ]);
+
+    $widget->add_responsive_control('reviews_per_view', [
+      'label'          => esc_html__('Reviews Per View', 'google-review'),
+      'type'           => \Elementor\Controls_Manager::SELECT,
+      'options'        => [
+        '1' => '1',
+        '2' => '2',
+        '3' => '3',
+        '4' => '4',
+        '5' => '5',
+        '6' => '6',
+      ],
+      'default'        => '3',
+      'tablet_default' => '2',
+      'mobile_default' => '1',
+    ]);
+
 
     $widget->end_controls_section();
 
