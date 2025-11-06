@@ -28,7 +28,40 @@ $cols_m = esc_attr($settings['static_columns_mobile'] ?? $cols_t);
               <p class="subtitle"><?= strip_tags($item['subtitle']); ?></p>
             <?php endif?>
 
-            <p class="date <?= $settings['hide_review_date'] === 'yes' ? '--hidden' :'' ?>"><?= $item['date']; ?></p>
+            <?php
+            $hide_date = $settings['hide_review_date'] === 'yes';
+            $date_raw  = $item['date'] ?? '';
+            $relative_label = '';
+
+            if ( ! $hide_date && ! empty( $date_raw ) ) {
+              $timestamp = strtotime( $date_raw );
+
+              if ( $timestamp ) {
+                // Calculate relative time
+                $now = current_time( 'timestamp' );
+                $diff_days = floor( ( $now - $timestamp ) / DAY_IN_SECONDS );
+
+                if ( $diff_days < 1 ) {
+                  $relative_label = __( 'today', 'google-review' );
+                } elseif ( $diff_days <= 7 ) {
+                  $relative_label = sprintf( _n( '%s day ago', '%s days ago', $diff_days, 'google-review' ), $diff_days );
+                } elseif ( $diff_days <= 28 ) {
+                  $weeks = floor( $diff_days / 7 );
+                  $relative_label = sprintf( _n( '%s week ago', '%s weeks ago', $weeks, 'google-review' ), $weeks );
+                } elseif ( $diff_days <= 365 ) {
+                  $months = floor( $diff_days / 30 );
+                  $relative_label = sprintf( _n( '%s month ago', '%s months ago', $months, 'google-review' ), $months );
+                } else {
+                  $years = floor( $diff_days / 365 );
+                  $relative_label = sprintf( _n( '%s year ago', '%s years ago', $years, 'google-review' ), $years );
+                }
+              }
+            }
+            ?>
+
+            <?php if ( ! $hide_date && $relative_label ) : ?>
+              <p class="date"><?= esc_html( $relative_label ); ?></p>
+            <?php endif; ?>
 
           </div>
 
