@@ -224,7 +224,7 @@ class ControlsBuilder {
             'min' => 3,
             'max' => 5,
             'step' => 0.5,
-            'default' => 4,
+            'default' => 5,
           ],
           [
             'name' => 'review_description',
