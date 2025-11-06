@@ -209,13 +209,17 @@ class ControlsBuilder {
             'label_block' => true,
           ],
           [
-            'name' => 'date',
-            'label' => esc_html__( 'Date of published', 'google-review' ),
-            'type' => \Elementor\Controls_Manager::TEXT,
-            'placeholder' => '2024-03-05',
-            'default' => '2024-03-05',
-            'label_block' => true,
-
+              'name'        => 'date',
+              'label'       => esc_html__( 'Date of Published', 'google-review' ),
+              'type'        => \Elementor\Controls_Manager::DATE_TIME,
+              'picker_options' => [
+                  'enableTime' => false,
+                  'minDate'    => gmdate( 'Y-m-d', strtotime( '-2 years' ) ),
+                  'maxDate'    => gmdate( 'Y-m-d' ),
+              ],
+              'default'     => gmdate( 'Y-m-d H:i:s' ),
+              'label_block' => true,
+              'description' => esc_html__( 'Pick a date within the last 2 years. Future dates are not allowed.', 'google-review' ),
           ],
           [
             'name' => 'stars',
