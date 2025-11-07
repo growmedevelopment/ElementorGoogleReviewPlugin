@@ -14,7 +14,22 @@ $verified_tick = $stars['verified_tick'];
           <?php if (!empty($item['avatar_url'])) : ?>
             <img class="avatar" src="<?=$item['avatar_url']?>" alt="<?= $item['text']; ?>" height="40px" width="40px">
           <?php else:?>
-            <div class="initial"><?= $item['link']; ?></div>
+            <div class="initial-container">
+              <div class="initial">
+                <?= $item['link']; ?>
+                <?php if ( ! empty( $item['is_local_guide'] ) && $item['is_local_guide'] === 'yes' ) : ?>
+                  <img
+                    class="local-guide-badge"
+                    src="<?php echo esc_url( plugin_dir_url( dirname( __DIR__, 2 ) ) . 'google-reviews/assets/images/points-badges_local_guides.webp' ); ?>"
+                    alt="<?php esc_attr_e( 'Local Guide', 'google-review' ); ?>"
+                    width="18"
+                    height="18"
+                  />
+                <?php endif; ?>
+              </div>
+
+            </div>
+
           <?php endif?>
 
           <div class="user-info">

@@ -201,6 +201,16 @@ class ControlsBuilder {
             'label_block' => true,
           ],
           [
+              'name' => 'is_local_guide',
+              'label' => esc_html__( 'Local Guide', 'google-review' ),
+              'type' => \Elementor\Controls_Manager::SWITCHER,
+              'label_on' => esc_html__( 'Yes', 'google-review' ),
+              'label_off' => esc_html__( 'No', 'google-review' ),
+              'return_value' => 'yes', // stored value when checked
+              'default' => '', // unchecked by default
+              'description' => esc_html__( 'Mark this author as a Local Guide', 'google-review' ),
+          ],
+          [
             'name' => 'link',
             'label' => esc_html__( 'Author Initial', 'google-review' ),
             'type' => \Elementor\Controls_Manager::TEXT,
