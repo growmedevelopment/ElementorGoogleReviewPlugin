@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Elementor Google reviews
  * Description: Elementor widget Google reviews.
- * Version:     2.2.4
+ * Version:     2.2.7
  * Author:      Dmytro Kovalenko
  * Author URI:  https://dmytro-kovalenko.com/
  * Text Domain: google-reviews

@@ -1,5 +1,6 @@
 jQuery(window).on('elementor/frontend/init', function () {
   elementorFrontend.hooks.addAction('frontend/element_ready/google-review-widget.default', function ($scope) {
+      console.log('Google Review Widget Script Loaded');
     const slider = $scope.find('.review-cards.--slider');
 
     // Initialize Slick Slider only if the slider exists
