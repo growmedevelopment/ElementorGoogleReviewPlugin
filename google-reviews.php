@@ -23,6 +23,25 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
+define('GOOGLE_REVIEWS_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('GOOGLE_REVIEWS_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+spl_autoload_register(static function (string $class): void {
+    $prefix  = 'GoogleReview\\';
+    $baseDir = __DIR__ . '/src/';
+
+    if (! str_starts_with($class, $prefix)) {
+        return;
+    }
+
+    $relative = str_replace('\\', '/', substr($class, strlen($prefix)));
+    $file     = $baseDir . $relative . '.php';
+
+    if (file_exists($file)) {
+        require $file;
+    }
+});
+
 require_once __DIR__ . '/plugin-update-checker-master/plugin-update-checker.php';
 
 register_deactivation_hook(__FILE__, 'google_reviews_deactivate');
