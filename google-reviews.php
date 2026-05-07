@@ -16,7 +16,6 @@
 
 declare(strict_types=1);
 
-use Elementor\Widgets_Manager;
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 if (! defined('ABSPATH')) {
@@ -126,8 +125,29 @@ function google_reviews_get_update_metadata_url(): string
     );
 }
 
-function google_reviews_register_widgets(Widgets_Manager $widgets_manager): void
+function google_reviews_register_widgets(\Elementor\Widgets_Manager $widgetsManager): void
 {
-    require_once __DIR__ . '/widgets/googleRewie-widget.php';
-    $widgets_manager->register(new \Essential_Elementor_Google_Review_Widget());
+    require_once __DIR__ . '/widgets/GoogleReviewWidget.php';
+
+    $starRenderer  = new \GoogleReview\Rendering\StarRenderer();
+    $dateFormatter = new \GoogleReview\Rendering\RelativeDateFormatter();
+
+    \GoogleReview\GoogleReviewWidget::configure(
+        assetLoader:  new \GoogleReview\Assets\AssetLoader(
+            GOOGLE_REVIEWS_PLUGIN_DIR,
+            GOOGLE_REVIEWS_PLUGIN_URL,
+        ),
+        starRenderer: $starRenderer,
+        sections: [
+            new \GoogleReview\Controls\GeneralSettingsSection(),
+            new \GoogleReview\Controls\MainSection(),
+            new \GoogleReview\Controls\ReviewsSection(),
+        ],
+        renderers: [
+            'slider'     => new \GoogleReview\Rendering\SliderRenderer($starRenderer, $dateFormatter),
+            'thumbnails' => new \GoogleReview\Rendering\ThumbnailsRenderer($starRenderer, $dateFormatter),
+        ],
+    );
+
+    $widgetsManager->register(new \GoogleReview\GoogleReviewWidget());
 }
