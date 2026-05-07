@@ -1,6 +1,6 @@
 jQuery(window).on('elementor/frontend/init', function () {
   elementorFrontend.hooks.addAction('frontend/element_ready/google-review-widget.default', function ($scope) {
-      console.log('Google Review Widget Script Loaded');
+
     const slider = $scope.find('.review-cards.--slider');
 
     // Initialize Slick Slider only if the slider exists
@@ -55,11 +55,11 @@ jQuery(window).on('elementor/frontend/init', function () {
     }
 
     $scope.on('click', '.extend-button', function () {
-      toggleReviewHeight(this, true);
+      toggleReviewHeight(this, true, () => refreshSlickHeight(slider));
     });
 
     $scope.on('click', '.reduce-button', function () {
-      toggleReviewHeight(this, false);
+      toggleReviewHeight(this, false, () => refreshSlickHeight(slider));
     });
 
     applyRandomColors($scope.find('.initial'), ['#ab47bc', '#00897b', '#8d6e63', '#ea4335', '#689f38']);
@@ -77,7 +77,7 @@ jQuery(window).on('elementor/frontend/init', function () {
     /**
      * Toggle review height on click
      */
-    function toggleReviewHeight(button, expand) {
+    function toggleReviewHeight(button, expand, onComplete) {
       const DEFAULT_HEIGHT = '130px';
       const ANIMATION_DURATION = 300;
 
@@ -87,7 +87,7 @@ jQuery(window).on('elementor/frontend/init', function () {
       if (!reviewTextElement.length) return;
 
       const newHeight = expand ? `${reviewTextElement[0].scrollHeight + 10}px` : DEFAULT_HEIGHT;
-      reviewTextElement.animate({ height: newHeight }, ANIMATION_DURATION);
+      reviewTextElement.animate({ height: newHeight }, ANIMATION_DURATION, onComplete);
 
       reviewTextElement.css({
         '-webkit-line-clamp': expand ? 'unset' : '6',
@@ -115,6 +115,15 @@ jQuery(window).on('elementor/frontend/init', function () {
           $reduce.remove();
         }
       });
+    }
+
+    /**
+     * Refresh Slick slider height after dynamic content change
+     *
+     * @param {jQuery} $slider - The Slick slider jQuery element
+     */
+    function refreshSlickHeight($slider) {
+      $slider.slick('setPosition');
     }
   });
 });
